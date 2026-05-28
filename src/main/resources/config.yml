@@ -69,7 +69,7 @@ viaentities:
   debug: false
 
   # Measured in blocks, leave as '-1' for the default view distance.
-  max-distance: -1'
+  max-distance: -1
 
 
 #  ==== ||   || ||== ||==  //\\   //= ==== <>  //=\\  ||\ ||  //=

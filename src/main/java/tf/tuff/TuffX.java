@@ -54,6 +54,8 @@ public class TuffX extends JavaPlugin implements Listener, PluginMessageListener
     public void onEnable() {
         PacketEvents.getAPI().init();
 
+        saveDefaultConfig();
+
         y0Plugin.onTuffXEnable();
         tuffActions.onTuffXEnable();
         viaBlocksPlugin.onTuffXEnable();
@@ -63,7 +65,6 @@ public class TuffX extends JavaPlugin implements Listener, PluginMessageListener
         viaBlocksPlugin.blockListener.setChunkInjector(chunkInjector);
         y0Plugin.setChunkInjector(chunkInjector);
 
-        saveDefaultConfig();
         getConfig().options().copyDefaults(true);
         saveConfig();
 

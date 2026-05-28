@@ -13,7 +13,6 @@ import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.entity.EntityToggleSwimEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -136,16 +135,12 @@ public class TuffActions {
     }
 
     public void handlePlayerQuit(PlayerQuitEvent event) {
-        swimmingManager.handleSwimQuit(event);
+        swimmingManager.handlePlayerQuit(event);
         tuffPlayers.remove(event.getPlayer().getUniqueId());
     }
 
     public void handleToggleSwim(EntityToggleSwimEvent event) {
         swimmingManager.handleToggleSwim(event);
-    }
-
-    public void handleToggleGlide(EntityToggleGlideEvent event) {
-        swimmingManager.handleToggleGlide(event);
     }
 
     public void handlePlayerInventoryClick(InventoryClickEvent event) {

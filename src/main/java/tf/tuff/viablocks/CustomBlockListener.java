@@ -51,7 +51,6 @@ public class CustomBlockListener {
     private static final long X_MASK = (1L << 26) - 1L;
     private static final long Z_MASK = (1L << 26) - 1L;
     private static final long Y_MASK = (1L << 12) - 1L;
-    private static final int Y_SHIFT = 0;
     private static final int Z_SHIFT = 12;
     private static final int X_SHIFT = 12 + 26; 
     private final Map<UUID, Map<Integer, List<Long>>> pendingUpdates = new HashMap<>();
@@ -284,6 +283,7 @@ public class CustomBlockListener {
         });
     }
 
+    @SuppressWarnings("unchecked")
     private Map<Integer, List<Long>> findModernBlocksInChunk(ChunkSnapshot chunkSnapshot, int minHeight, int maxHeight) {
         Int2ObjectMap<LongList> foundBlocks = new Int2ObjectOpenHashMap<>();
     
@@ -303,7 +303,8 @@ public class CustomBlockListener {
                     }
 
                     // Only allocate BlockData for confirmed modern blocks
-                    BlockData data = chunkSnapshot.getBlockData(x, y, z);
+                    @SuppressWarnings("null")
+                    @Nonnull BlockData data = chunkSnapshot.getBlockData(x, y, z);
 
                     Integer cachedId = blockDataIdCache.getIfPresent(data);
                     int materialId;
@@ -586,7 +587,8 @@ public class CustomBlockListener {
         return id;
     }
     
-    private byte[] buildChunkPacket(Map<Integer, List<Long>> blockData) {
+    @SuppressWarnings("null")
+    private @Nonnull byte[] buildChunkPacket(Map<Integer, List<Long>> blockData) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("ADD_CHUNK"); 
         out.writeInt(blockData.size());
